@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+{% extends "inventory_management_app/inventory_management_app_base.html" %}
+
+  {% block body_block %}
+
+  <!-- <div class="row">
+    <div id="extended_margin" class="col-lg-2">
+    </div> -->
+
+<div class="container">
+
+  <div class="row">
+
+
+
+    <div class="row">
+
+      <div class="col-lg-2" >
+        <div class="recent_queries">
+        <h3>RECENT QUERIES</h3>
+        {% for item in queries %}
+        <a class="recent_queries_list" href="{% url 'inventory_management_app:search_results' %}?q={{item.query}}">"{{ item.query }}"</a>
+        <br>
+        {% endfor %}
+        </div>
+      </div>
+
+        <div class="row">
+          <div class="col-lg-2" >
+
+                <div class="row">
+                <div class="col-lg-2" >
+                  <div class="dashboard_small_box">
+                    <h3>ACTIVE PROJECTS</h3>
+
+                    <h2>{{ number_of_projects.count }}</h2>
+
+                  </div>
+                </div>
+                </div>
+
+
+                <div class="row">
+                <div class="col-lg-2" >
+                  <div class="dashboard_small_box">
+                    <h3>TOTAL BOXES</h3>
+                    <h2> {{ box_data.count }} </h2>
+                  </div>
+                </div>
+                </div>
+
+              </div>
+            </div>
+
+        <div class="row">
+
+
+
+<!-- Pie chart -->
+
+          <div class="col-lg-6" >
+            <div class="pie_chart">
+          <script type="text/javascript">
+
+          $(function () {
+            var my_pie_chart = Highcharts.chart('pie_container', {
+              chart: {
+                type: 'pie',
+                options3d: {
+                  enabled: true,
+                  alpha: 70
+                }
+                },
+                exporting: { enabled: false },
+
+                title: {
+                    text: 'Boxes per project',
+                    align: 'left',
+                  },
+                  plotOptions: {
+                    pie: {
+                      innerSize: 120,
+                      depth: 15,
+                    },
+
+
+                  },
+                  series: [{
+                    name: 'Boxes Assigned',
+                    data: [
+                      {% for item in project_data %}
+
+                      ['{{item.project_name}}', {{item.box_set.count}}],
+
+                      {% endfor %}
+
+                    ]
+                  }]
+                });
+              });
+
+
+                </script>
+
+
+
+            <div id="pie_container" style="width:100%; height:45vh;">
+            </div>
+          </div>
+          </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+          <div class="row">
+
+
+<!-- Free Shelf Space Dashboard Widget -->
+
+
+
+
+              <div class="col-md-5">
+
+                <div class="dashboard_shelf_space_widget">
+
+                <script type="text/javascript">
+                $(function () {
+                  var free_space_chart =
+
+                  Highcharts.chart('free_space_chart', {
+
+
+
+
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Free Shelf Space',
+                        align: 'left',
+
+                    },
+                    subtitle: {
+                        text: 'Click columns for breakdown by room',
+                        align: 'left',
+
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Number of free spaces'
+                        }
+
+                    },
+
+                    exporting: { enabled: false },
+
+
+                    legend: {
+                        enabled: false
+                    },
+
+
+
+                    colors: [
+                      '#212a1e',
+
+
+                      ],
+
+
+
+
+
+
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y:.0f}',
+
+                            }
+                        }
+                    },
+
+                    credits: { enabled: false },
+                    tooltip: { enabled: false },
+
+
+                    "series": [
+                        {
+                            "name": "Room",
+                            "colorByPoint": true,
+                            // "colors": 'red',
+                            "data": [
+
+                              {% for each_space in Vacant_location_data %}
+
+                              {
+                                "name": "Room {{ each_space.loc_room }}",
+                                "y": {{ each_space.nempty }},
+                                "drilldown": "{{ each_space.loc_room }}"
+                              },
+
+                              {% endfor %}
+
+                            ]
+                        }
+                    ],
+                    "drilldown": {
+                          drillUpButton: {
+                            relativeTo: 'spacingBox',
+                            position: {
+                              y: 0,
+                              x: 0
+                                    },
+                            theme: {
+                                  fill: '#cecece',
+                                  'stroke-width': 1,
+                                  stroke: 'silver',
+                                  r: 0,
+                                  states: {
+                                      hover: {
+                                          fill: '#a0a0a0',
+                                          stroke: '#a0a0a0'
+                                        },
+                                        select: {
+                                          stroke: '#a0a0a0',
+                                          fill: '#a0a0a0'
+                                }
+                            }}},
+
+
+                        "series": [
+
+                          {% for each_space in Vacant_location_data %}
+
+
+                            {
+                                "name": "{{ each_space.loc_room }}",
+                                "id": "{{ each_space.loc_room }}",
+
+                                "data":[
+                                    {
+                                        name: "Free space",
+                                        y: {{ each_space.nempty }},
+                                        color:'#212a1e'
+
+                                    },
+
+                                    {
+                                        name: "Occupied Space",
+                                        y: {{ each_space.occupied }},
+                                        color: '#633333'
+                                    },
+
+
+                                ]
+
+
+
+
+
+
+
+                            },
+
+                            {% endfor %}
+
+
+                        ]
+                    }
+
+
+
+
+
+
+                    })
+                    console.log('free_space_chart ', free_space_chart);
+
+                    });
+
+                    </script>
+
+
+
+
+                <div id="free_space_chart">
+
+
+                      <div>
+
+
+
+                      </div>
+
+
+
+
+
+                    </div>
+
+
+
+
+                  </div>
+                  </div>
+
+              </div>
+
+
+
+<!-- Asset Changes Dashboard Widget -->
+
+              <div class="col-md-5">
+
+                <script>
+                $(document).ready(function(){
+                        $('#asset_changes_table').find('tr:contains("Created")').css('background-color','#212B1E');
+                        $('#asset_changes_table').find('tr:contains("Deleted")').css('background-color','#472727');
+                        $('#asset_changes_table').find('tr:contains("Changed")').css('background-color','#4C462A');
+
+
+                });
+                </script>
+
+
+
+
+
+                <div class="asset_changes_widget">
+
+                  <!-- <h3>ASSET CHANGES</h3> -->
+
+
+
+                    <table id="asset_changes_table">
+
+                      <colgroup>
+                        <col style="width:18vw">
+                        <col style="width:18vw">
+                        <col style="width:70vw">
+                      </colgroup>
+
+                    <thead>
+                        <tr>
+                          <th>CHANGES MADE</th>
+                          <th>PROJECT</th>
+                          <th>BOX CONTENTS</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                      {% for item in box_content_history %}
+
+
+                        <tr>
+
+                          <td>{{ item.get_history_type_display }}</td>
+                          <td>{{ item.project_assigned_to }}</td>
+                          <td>{{ item.box_contents }}</td>
+
+                        </tr>
+
+                        {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    </div>
+
+
+
+
+          </div>
+      </div>
+
+
+  </div>
+
+
+
+
+
+
+
+  {% endblock %}

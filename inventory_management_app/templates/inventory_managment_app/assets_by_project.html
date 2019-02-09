@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+{% extends "inventory_management_app/templates/inventory_management_app/inventory_management_app_base.html" %}
+
+  {% block body_block %}
+
+<div id="viewable_area" class="col-lg-9">
+<div style="overflow-y:auto; height:100vh; width:80vw">
+<div class="row">
+
+{% for item in project_data %}
+
+<div class="col-lg-4" >
+  <a href="project_search_results/{{item.project_name}}">
+    <div class="project_button">
+
+
+
+  <span>
+      <h3>{{ item.project_name }}</h3>
+      <p>{{ item.project_manager }}</p>
+  </span>
+
+
+
+
+    </div>
+  </a>
+</div>
+
+{% endfor %}
+</div>
+</div>
+</div>
+  {% endblock %}

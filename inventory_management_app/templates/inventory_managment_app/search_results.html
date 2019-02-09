@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+{% extends "inventory_management_app/templates/inventory_management_app/inventory_management_app_base.html" %}
+
+  {% block body_block %}
+
+
+
+
+  <script>
+  $(document).ready( function () {
+  $('#table_id').DataTable({
+  "scrollY": "85vh",
+  "scrollCollapse": true,
+  "paging": false,
+  "sDom": "ltipr",
+
+  });
+  } );
+  </script>
+
+
+  <div id="viewable_area" class="col-lg-9">
+
+
+        <table id="table_id" class="display">
+
+            <thead>
+                <tr>
+                    <th>Assets</th>
+                    <th>Project</th>
+                    <th>Room</th>
+                    <th>Section</th>
+                    <th>Shelf</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+              {% for item in results %}
+
+
+                <tr>
+
+                    <td>{{ item.box_contents }}</td>
+                    <td>{{ item.project_assigned_to }}</td>
+                    <td>{{ item.Location.loc_room }}</td>
+                    <td>{{ item.Location.loc_section }}</td>
+                    <td>{{ item.Location.loc_shelf }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+
+            </tbody>
+
+        </table>
+
+
+        </div>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {% endblock %}
