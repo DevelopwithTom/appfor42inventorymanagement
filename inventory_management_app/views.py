@@ -194,7 +194,7 @@ def project_search_results(request, project_query):
 
 @login_required
 def assets_by_location(request):
-    location_data = Location.objects.values('loc_room').distinct()
+    location_data = Location.objects.values('loc_room').distinct('loc_room')
     return render(request, 'inventory_management_app/assets_by_location.html', {"location_data":location_data})
 
 
