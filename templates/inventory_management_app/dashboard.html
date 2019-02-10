@@ -8,7 +8,8 @@
     <div id="extended_margin" class="col-lg-2">
     </div> -->
 
-<div class="container">
+<div class="container-fluid">
+<div id="dashboard_margin">
 
   <div class="row">
 
@@ -16,7 +17,7 @@
 
     <div class="row">
 
-      <div class="col-lg-2" >
+      <div class="col-sm-2" >
         <div class="recent_queries">
         <h3>RECENT QUERIES</h3>
         {% for item in queries %}
@@ -27,10 +28,10 @@
       </div>
 
         <div class="row">
-          <div class="col-lg-2" >
+          <div class="col-sm-1" >
 
                 <div class="row">
-                <div class="col-lg-2" >
+                <div class="col-sm-1 col-md-1 col-lg-1 col-xl-1" >
                   <div class="dashboard_small_box">
                     <h3>ACTIVE PROJECTS</h3>
 
@@ -42,7 +43,7 @@
 
 
                 <div class="row">
-                <div class="col-lg-2" >
+                <div class="col-sm-1" >
                   <div class="dashboard_small_box">
                     <h3>TOTAL BOXES</h3>
                     <h2> {{ box_data.count }} </h2>
@@ -59,7 +60,7 @@
 
 <!-- Pie chart -->
 
-          <div class="col-lg-6" >
+          <div class="col-sm-2" >
             <div class="pie_chart">
           <script type="text/javascript">
 
@@ -128,7 +129,7 @@
 
 
 
-              <div class="col-md-5">
+              <div class="col-sm-5">
 
                 <div class="dashboard_shelf_space_widget">
 
@@ -325,7 +326,7 @@
 
 <!-- Asset Changes Dashboard Widget -->
 
-              <div class="col-md-5">
+              <div class="col-sm-5">
 
                 <script>
                 $(document).ready(function(){
@@ -402,6 +403,8 @@
 
           </div>
       </div>
+    </div>
+
 
 
   </div>

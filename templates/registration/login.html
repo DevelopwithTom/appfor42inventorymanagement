@@ -9,46 +9,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
     <!-- My Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Exo:100,200,300,400" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-
-
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
-    <!-- Jquery-->
-    <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
-
-    <!-- Datatables CDN-->
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
-
-
-
-    <!-- Highcharts-->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-
-
-
-    <script src="https://code.highcharts.com/modules/data.js"></script>
-    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
 
     <!-- My Custom JS -->
     <script src="{% static 'js/inventory_management_app.js' %}"></script>
     <!-- My Custom CSS -->
-    <link rel="stylesheet" href= "{% static "css/base.css" %}" >
+    <link rel="stylesheet" href= "{% static "css/login.css" %}" >
 
 
 
@@ -62,6 +33,7 @@
 
 
 
+<div class="container-fluid">
 
 
 <body id="bg" style="background-image: url('{% static "images/dashboard_blur.png"%}')";>
@@ -70,8 +42,11 @@
 
 
 
+  <div class="row">
+  <div class="col-0 col-sm-1 col-md-3 col-lg-4 col-xl-4" >
+  </div>
 
-
+  <div class="col-12 col-sm-10 col-md-6 col-lg-4 col-xl-4" align="center" >
 
   <div class="log_in_box">
 
@@ -104,7 +79,7 @@
 
 
       {% if form.errors %}
-          <p>Please enter a correct username and password. Note that both fields may be case-sensitive.</p>
+          <h4>Please enter a correct username and password. Note that both fields may be case-sensitive.</h4>
       {% endif %}
 
 
@@ -119,7 +94,11 @@
 
   </div>
 
-
+</div>
+<div class="col-0 col-sm-0 col-md-3 col-lg-4 col-xl-4" >
+</div>
+</div>
+</div>
 
 
 
