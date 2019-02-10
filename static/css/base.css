@@ -65,7 +65,14 @@ h4 {
   color: #E0E0E0;
 }
 
+h1 {
+  font-family: 'Exo', sans-serif;
+  color: #E0E0E0;
+  font-size: 1.2em;
+  font-weight: 200;
+  line-height: 1.7em;
 
+}
 
 #extended_margin {
   margin-right: 50px;
