@@ -52,7 +52,7 @@ class Location(models.Model):
     class Meta:
         managed = True
         db_table = 'Location'
-        ordering = ["loc_room", "loc_shelf", "loc_section"]
+        # ordering = ["loc_room", "loc_shelf", "loc_section"]
 
 
 
@@ -87,7 +87,7 @@ class Box(models.Model):
     class Meta:
         managed = True
         db_table = 'Box'
-        ordering = ["Location", "project_assigned_to"]
+        # ordering = ["Location", "project_assigned_to"]
 
 
 
