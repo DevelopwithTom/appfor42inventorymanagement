@@ -117,8 +117,9 @@ def dashboard(request):
     Occupied_location_data = list(Location.objects.values('loc_room'
     ).filter(box__isnull=False).annotate(nempty=Count('id')).order_by('loc_room'))
 
-    for i, vacant in enumerate(Vacant_location_data):
-        vacant['occupied'] = Occupied_location_data[i]['nempty']
+    if Occupied_location_data:
+        for i, vacant in enumerate(Vacant_location_data):
+            vacant['occupied'] = Occupied_location_data[i]['nempty']
 
 
 
