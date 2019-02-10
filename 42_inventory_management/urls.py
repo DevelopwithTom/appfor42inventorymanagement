@@ -21,7 +21,7 @@ from django.conf import settings
 
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls), name="admin"),
+    url(r'^inventory_management_app/admin/', include(admin.site.urls), name="admin"),
 
 
     url(r'^inventory_management_app/', include("inventory_management_app.urls"), name="inventory_management_app"),

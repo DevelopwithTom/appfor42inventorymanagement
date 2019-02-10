@@ -37,7 +37,7 @@ class Project(models.Model):
 
 class Location(models.Model):
     def __str__(self):
-        return "Room %s, Section %d, Shelf %s" %(self.loc_room, self.loc_section, self.loc_shelf)
+        return "Room %s, Shelf %s, Section %d" %(self.loc_room, self.loc_shelf, self.loc_section)
 
     loc_room = models.CharField(max_length=20, blank=True, null=True)
     loc_section = models.IntegerField(blank=True, null=True)
@@ -52,6 +52,8 @@ class Location(models.Model):
     class Meta:
         managed = True
         db_table = 'Location'
+        ordering = ["loc_room", "loc_shelf", "loc_section"]
+
 
 
 
@@ -85,6 +87,8 @@ class Box(models.Model):
     class Meta:
         managed = True
         db_table = 'Box'
+        ordering = ["Location", "project_assigned_to"]
+
 
 
 
