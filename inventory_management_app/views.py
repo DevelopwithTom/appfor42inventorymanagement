@@ -26,37 +26,6 @@ from django.contrib import messages
 
 
 
-# class dashboard(TemplateView):
-#     template_name = 'inventory_management_app/dashboard.html'
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['UserQueryHistory'] = UserQueryHistory.objects.filter(user=request.user)
-#         return context
-
-
-
-# def login_view(request):
-#
-#     form = LoginForm
-#     return render(request, 'inventory_management_app/login.html', { "form":form })
-
-
-# def login(request):
-#     if request.method == "POST":
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data['username']
-#             password = form.cleaned_data['password']
-#             user = authenticate(username=username, password=password)
-#             if user is not None:
-#                 login(request,user)
-#                 return redirect('/')
-#             else:
-#                 error = " Sorry! Username and Password didn't match, Please try again ! "
-#     else:
-#         form = LoginForm()
-#     return render(request, 'girl/login.html', {"form":form})
-
 
 
 
@@ -93,7 +62,7 @@ def dashboard(request):
 
     # box_content_history = Box.history.filter(history_type='-').order_by('-history_date')
 
-    box_content_history = Box.history.all().order_by('-history_date')
+    box_content_history = Box.history.all().order_by('-history_date').distinct()
 
 
 
@@ -137,11 +106,6 @@ def dashboard(request):
 
 
 
-# project_assigned_to__project_name__icontains=query
-    # queries = UserQueryHistory.objects.filter(user=request.user,User_Query_History.query)
-
-
-
 
 
 
@@ -153,7 +117,7 @@ class all_assets(TemplateView):
         context['box_data'] = Box.objects.all()
         return context
 
-#Use ListView for above
+#Transfer to class ListView for above
 
 
 
@@ -177,7 +141,8 @@ def assets_by_project(request):
     project_data = Project.objects.all()
     return render(request, 'inventory_management_app/assets_by_project.html', { "project_data":project_data })
 
-#ListView
+##Transfer to class ListView for above
+
 
 
 
@@ -189,7 +154,7 @@ def project_search_results(request, project_query):
     results = Box.objects.filter(Q(project_assigned_to__project_name__icontains=query))
     return render(request, 'inventory_management_app/project_search_results.html', {'query':query,'results':results})
 
-#ListView
+#Transfer to class ListView for above
 
 
 @login_required
