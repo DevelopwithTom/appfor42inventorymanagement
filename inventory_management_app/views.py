@@ -62,7 +62,7 @@ def dashboard(request):
 
     # box_content_history = Box.history.filter(history_type='-').order_by('-history_date')
 
-    box_content_history = Box.history.all().order_by('-history_date').distinct()
+    box_content_history = Box.history.all().order_by('-history_date')
 
 
 
